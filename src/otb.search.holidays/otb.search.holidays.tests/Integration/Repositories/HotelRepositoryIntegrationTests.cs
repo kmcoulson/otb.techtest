@@ -2,7 +2,7 @@
 using otb.search.holidays.Entities;
 using otb.search.holidays.Repositories;
 
-namespace otb.search.holidays.tests.Integration
+namespace otb.search.holidays.tests.Integration.Repositories
 {
     [TestFixture]
     public class HotelRepositoryIntegrationTests
@@ -30,9 +30,9 @@ namespace otb.search.holidays.tests.Integration
                 // Assert
                 Assert.Multiple(() =>
                 {
-                    Assert.That(resultList, Is.InstanceOf<IEnumerable<FlightEntity>>());
-                    Assert.That(resultList, Has.Count.EqualTo(12));
-                    Assert.That(resultList[0].Id,Is.EqualTo(1));
+                    Assert.That(resultList, Is.InstanceOf<IEnumerable<HotelEntity>>());
+                    Assert.That(resultList, Has.Count.EqualTo(13));
+                    Assert.That(resultList[0].Id, Is.EqualTo(1));
                     Assert.That(resultList[0].Name, Is.EqualTo("Iberostar Grand Portals Nous"));
                     Assert.That(resultList[0].ArrivalDate, Is.EqualTo(new DateOnly(2022, 11, 05)));
                     Assert.That(resultList[0].PricePerNight, Is.EqualTo(100));

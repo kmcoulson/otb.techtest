@@ -1,4 +1,5 @@
-﻿using otb.search.holidays.Entities;
+﻿using Newtonsoft.Json;
+using otb.search.holidays.Entities;
 
 namespace otb.search.holidays.Repositories
 {
@@ -11,8 +12,12 @@ namespace otb.search.holidays.Repositories
     {
         public Task<IEnumerable<FlightEntity>> GetAll()
         {
+            var json = File.ReadAllText("Data/flights.json");
+            var data = JsonConvert.DeserializeObject<IEnumerable<FlightEntity>>(json);
 
-            throw new NotImplementedException();
+            if (data == null) throw new Exception("An error occurred parsing data for Flights");
+
+            return Task.FromResult(data);
         }
     }
 }

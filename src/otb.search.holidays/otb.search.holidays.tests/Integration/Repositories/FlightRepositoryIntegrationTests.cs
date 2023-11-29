@@ -2,7 +2,7 @@
 using otb.search.holidays.Entities;
 using otb.search.holidays.Repositories;
 
-namespace otb.search.holidays.tests.Integration
+namespace otb.search.holidays.tests.Integration.Repositories
 {
     [TestFixture]
     public class FlightRepositoryIntegrationTests
@@ -32,7 +32,7 @@ namespace otb.search.holidays.tests.Integration
                 {
                     Assert.That(resultList, Is.InstanceOf<IEnumerable<FlightEntity>>());
                     Assert.That(resultList, Has.Count.EqualTo(12));
-                    Assert.That(resultList[0].Id,Is.EqualTo(1));
+                    Assert.That(resultList[0].Id, Is.EqualTo(1));
                     Assert.That(resultList[0].Airline, Is.EqualTo("First Class Air"));
                     Assert.That(resultList[0].From, Is.EqualTo("MAN"));
                     Assert.That(resultList[0].To, Is.EqualTo("TFS"));
