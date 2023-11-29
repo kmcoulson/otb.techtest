@@ -160,7 +160,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var resultList = result.ToList();
 
                 // Assert
-                Assert.That(resultList, Has.Count.GreaterThan(0));
+                Assert.That(resultList, Has.Count.EqualTo(0));
             }
 
             [Test]
@@ -211,7 +211,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var from = "ANY";
                 var to = "JFK";
                 var date = new DateOnly(2023, 03, 01);
-                var days = 7;
+                var days = 14;
 
                 var flight = new FlightEntity
                 {
@@ -253,7 +253,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var from = $"Any {city} Airport";
                 var to = "LHR";
                 var date = new DateOnly(2023, 03, 01);
-                var days = 7;
+                var days = 14;
 
                 var flight = new FlightEntity
                 {

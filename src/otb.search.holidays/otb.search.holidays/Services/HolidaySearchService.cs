@@ -72,7 +72,8 @@ namespace otb.search.holidays.Services
             var validHotels = allHotels
                 .Where(x =>
                     (!toCodes.Any() || x.LocalAirports.Intersect(toCodes, StringComparer.CurrentCultureIgnoreCase).Any())
-                    && x.ArrivalDate.Equals(date))
+                    && x.ArrivalDate.Equals(date)
+                    && x.Nights == nights)
                 .ToList();
 
             var results = new List<HolidaySearchResultDto>();
