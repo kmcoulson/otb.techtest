@@ -3,6 +3,6 @@ Technical test for On The Beach
 
 # Tasks
 * Scaffold solution - DONE
-* Add data access for json files - GREEN
+* Add data access for json files - DONE
 * Add search service with basic search
 * Add "any" search functionality to search service
