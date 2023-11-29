@@ -300,11 +300,9 @@ namespace otb.search.holidays.tests.Unit.Services
                 var date = new DateOnly(2023, 09, 19);
                 var days = 14;
 
-                var expectedCheapestPrice = 14220;
-
                 var flights = new List<FlightEntity>
                 {
-                    new FlightEntity
+                    new()
                     {
                         Id = 1,
                         Airline = "Skippyair",
@@ -313,7 +311,7 @@ namespace otb.search.holidays.tests.Unit.Services
                         DepartureDate = date,
                         Price = 321
                     },
-                    new FlightEntity
+                    new()
                     {
                         Id = 2,
                         Airline = "Aeroflop",
@@ -328,7 +326,7 @@ namespace otb.search.holidays.tests.Unit.Services
 
                 var hotels = new List<HotelEntity>
                 {
-                    new HotelEntity
+                    new()
                     {
                         Id = 1,
                         Name = "Barny's Spa & Resort",
@@ -337,7 +335,7 @@ namespace otb.search.holidays.tests.Unit.Services
                         LocalAirports = new List<string> { to },
                         Nights = 14
                     },
-                    new HotelEntity
+                    new()
                     {
                         Id = 2,
                         Name = "Skippy's Spa & Resort",
@@ -376,7 +374,7 @@ namespace otb.search.holidays.tests.Unit.Services
 
                 var flights = new List<FlightEntity>
                 {
-                    new FlightEntity
+                    new()
                     {
                         Id = 1,
                         Airline = "Skippyair",
@@ -385,7 +383,7 @@ namespace otb.search.holidays.tests.Unit.Services
                         DepartureDate = date,
                         Price = 321
                     },
-                    new FlightEntity
+                    new()
                     {
                         Id = 2,
                         Airline = "Aeroflop",
@@ -400,7 +398,7 @@ namespace otb.search.holidays.tests.Unit.Services
 
                 var hotels = new List<HotelEntity>
                 {
-                    new HotelEntity
+                    new()
                     {
                         Id = 1,
                         Name = "Barny's Spa & Resort",
@@ -409,7 +407,7 @@ namespace otb.search.holidays.tests.Unit.Services
                         LocalAirports = new List<string> { to },
                         Nights = 14
                     },
-                    new HotelEntity
+                    new()
                     {
                         Id = 2,
                         Name = "Skippy's Spa & Resort",

@@ -2,7 +2,7 @@
 {
     public class AirportsDataResponse
     {
-        public List<Airport> Airports { get; set; } = new List<Airport>();
+        public List<Airport> Airports { get; set; } = new();
     }
     public class Airport
     {
