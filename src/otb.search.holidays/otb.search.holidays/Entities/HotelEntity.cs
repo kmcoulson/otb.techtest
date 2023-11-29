@@ -18,7 +18,7 @@ public class HotelEntity
 
 
     [JsonProperty("local_airports")]
-    public string[] LocalAirports { get; set; }
+    public List<string> LocalAirports { get; set; }
 
     public int Nights { get; set; }
 }

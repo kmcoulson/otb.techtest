@@ -18,8 +18,4 @@
 	  <ProjectReference Include="..\otb.search.holidays\otb.search.holidays.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Unit\" />
-	</ItemGroup>
-
 </Project>
