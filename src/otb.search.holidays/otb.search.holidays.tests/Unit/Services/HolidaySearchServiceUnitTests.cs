@@ -121,6 +121,64 @@ namespace otb.search.holidays.tests.Unit.Services
             }
 
             [Test]
+            public async Task GivenSearchIsCalledWithFromValueOfAnyAndThereAreFlightMatches_ShouldReturnAListOfHolidaySearchResultDtos()
+            {
+                // Arrange
+                var from = "ANY";
+                var to = "JFK";
+                var date = new DateOnly(2023, 03, 01);
+                var days = 7;
+
+                var flight = new FlightEntity
+                {
+                    Id = 1,
+                    Airline = "Skippyair",
+                    From = "CDG",
+                    To = to,
+                    DepartureDate = date,
+                    Price = 456
+                };
+
+                _flightRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(new List<FlightEntity> { flight });
+
+                // Act
+                var result = await _classUnderTest.Search(from, to, date, days);
+                var resultList = result.ToList();
+
+                // Assert
+                Assert.That(resultList, Has.Count.GreaterThan(0));
+            }
+
+            [Test]
+            public async Task GivenSearchIsCalledWithFromValueOfAnyCityAirportAndThereAreFlightMatches_ShouldReturnAListOfHolidaySearchResultDtos()
+            {
+                // Arrange
+                var from = "Any London Airport";
+                var to = "JFK";
+                var date = new DateOnly(2023, 03, 01);
+                var days = 7;
+
+                var flight = new FlightEntity
+                {
+                    Id = 1,
+                    Airline = "Skippyair",
+                    From = "LHR",
+                    To = to,
+                    DepartureDate = date,
+                    Price = 456
+                };
+
+                _flightRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(new List<FlightEntity> { flight });
+
+                // Act
+                var result = await _classUnderTest.Search(from, to, date, days);
+                var resultList = result.ToList();
+
+                // Assert
+                Assert.That(resultList, Has.Count.GreaterThan(0));
+            }
+
+            [Test]
             public async Task GivenSearchIsCalledAndThereAreFlightMatchesButNoHotelMatches_ShouldReturnAListOfHolidaySearchResultDtosWithFlightsButNoHotels()
             {
                 // Arrange
