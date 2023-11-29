@@ -1,23 +1,24 @@
-﻿namespace otb.search.holidays.Repositories
+﻿using System.Net.Http.Json;
+using otb.search.holidays.Http;
+
+namespace otb.search.holidays.Repositories
 {
     public interface IAirportRepository
     {
-        List<string> GetAirportCodesForCity(string city);
+        Task<IEnumerable<string>> GetAirportCodesForCity(string city);
     }
 
     public class AirportRepository : IAirportRepository
     {
-        private readonly Dictionary<string, List<string>> _airportData = new()
+        public async Task<IEnumerable<string>> GetAirportCodesForCity(string city)
         {
-            {
-                "london",
-                new List<string> { "LTN", "LGW" }
-            }
-        };
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri(Constants.AirportApi.Url);
+            client.DefaultRequestHeaders.Add("APC-Auth", Constants.AirportApi.Key);
+            client.DefaultRequestHeaders.Add("APC-Auth-Secret", Constants.AirportApi.Secret);
 
-        public List<string> GetAirportCodesForCity(string city)
-        {
-            return _airportData.ContainsKey(city.ToLower()) ? _airportData[city.ToLower()] : new List<string>();
+            var result = await client.GetFromJsonAsync<AirportsDataResponse>($"{Constants.AirportApi.Endpoint}{city}");
+            return result?.Airports.Select(x => x.Iata) ?? new List<string>();
         }
     }
 }

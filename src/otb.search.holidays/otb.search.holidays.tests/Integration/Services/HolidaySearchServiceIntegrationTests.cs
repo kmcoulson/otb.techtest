@@ -20,72 +20,19 @@ namespace otb.search.holidays.tests.Integration.Services
 
         }
 
-        public class Search : HolidaySearchServiceIntegrationTests
+        public class SearchHolidays : HolidaySearchServiceIntegrationTests
         {
             [Test]
-            public async Task GivenSearchIsCalledForCustomerTest1_ShouldCallFlightsRepositoryGetAllMethod()
+            [TestCase("MAN", "AGP", "2023-07-01", 7, 2, 9, Description = "Customer #1")]
+            [TestCase("ANY LONDON", "PMI", "2023-06-15", 10, 6, 5, Description = "Customer #2")]
+            [TestCase("ANY", "LPA", "2022-11-10", 14, 7, 6, Description = "Customer #3")]
+            public async Task GivenSearchIsCalled_ShouldCallFlightsRepositoryGetAllMethod(string from, string to, string dateString, int nights, int expectedFlightId, int expectedHotelId)
             {
                 // Arrange
-                var from = "MAN";
-                var to = "AGP";
-                var date = new DateOnly(2023, 7, 1);
-                var nights = 7;
-
-                var expectedFlightId = 2;
-                var expectedHotelId = 9;
+                var date = DateOnly.Parse(dateString);
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, nights);
-                var topResult = result.FirstOrDefault();
-
-                // Assert
-                Assert.Multiple(() =>
-                {
-                    Assert.That(topResult, Is.Not.Null);
-                    Assert.That(topResult.Flight.Id, Is.EqualTo(expectedFlightId));
-                    Assert.That(topResult.Hotel.Id, Is.EqualTo(expectedHotelId));
-                });
-            }
-
-            [Test]
-            public async Task GivenSearchIsCalledForCustomerTest2_ShouldCallFlightsRepositoryGetAllMethod()
-            {
-                // Arrange
-                var from = "Any London Airport";
-                var to = "PMI";
-                var date = new DateOnly(2023, 6, 15);
-                var nights = 10;
-
-                var expectedFlightId = 6;
-                var expectedHotelId = 5;
-
-                // Act
-                var result = await _classUnderTest.Search(from, to, date, nights);
-                var topResult = result.FirstOrDefault();
-
-                // Assert
-                Assert.Multiple(() =>
-                {
-                    Assert.That(topResult, Is.Not.Null);
-                    Assert.That(topResult.Flight.Id, Is.EqualTo(expectedFlightId));
-                    Assert.That(topResult.Hotel.Id, Is.EqualTo(expectedHotelId));
-                });
-            }
-
-            [Test]
-            public async Task GivenSearchIsCalledForCustomerTest3_ShouldCallFlightsRepositoryGetAllMethod()
-            {
-                // Arrange
-                var from = "Any";
-                var to = "LPA";
-                var date = new DateOnly(2022, 11, 10);
-                var nights = 14;
-
-                var expectedFlightId = 7;
-                var expectedHotelId = 6;
-
-                // Act
-                var result = await _classUnderTest.Search(from, to, date, nights);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, nights);
                 var topResult = result.FirstOrDefault();
 
                 // Assert

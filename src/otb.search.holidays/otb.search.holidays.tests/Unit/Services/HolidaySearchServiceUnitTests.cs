@@ -25,7 +25,7 @@ namespace otb.search.holidays.tests.Unit.Services
             _classUnderTest = new HolidaySearchService(_flightRepositoryMock.Object, _hotelRepositoryMock.Object, _airportRepositoryMock.Object);
         }
 
-        public class Search : HolidaySearchServiceUnitTests
+        public class SearchHolidays : HolidaySearchServiceUnitTests
         {
             [Test]
             public async Task GivenSearchIsCalled_ShouldCallFlightsRepositoryGetAllMethod()
@@ -37,7 +37,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var days = 5;
 
                 // Act
-                await _classUnderTest.Search(from, to, date, days);
+                await _classUnderTest.SearchHolidays(from, to, date, days);
 
                 // Assert
                 _flightRepositoryMock.Verify(x => x.GetAll(), Times.Once);
@@ -54,7 +54,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var days = 14;
 
                 // Act
-                await _classUnderTest.Search(from, to, date, days);
+                await _classUnderTest.SearchHolidays(from, to, date, days);
 
                 // Assert
                 _hotelRepositoryMock.Verify(x => x.GetAll(), Times.Once);
@@ -70,7 +70,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var days = 10;
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
 
                 // Assert
                 Assert.That(result, Is.InstanceOf<IEnumerable<HolidaySearchResultDto>>());
@@ -86,7 +86,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 var days = 7;
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -115,7 +115,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 _flightRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(new List<FlightEntity> { flight });
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -156,7 +156,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 _hotelRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(new List<HotelEntity> { hotel });
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -197,7 +197,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 _hotelRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(new List<HotelEntity> { hotel });
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -238,7 +238,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 _hotelRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(new List<HotelEntity> { hotel });
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -281,10 +281,10 @@ namespace otb.search.holidays.tests.Unit.Services
 
                 var newYorkAirportData = new List<string> { "EWR", "JFK", "LGA" };
 
-                _airportRepositoryMock.Setup(x => x.GetAirportCodesForCity(city)).Returns(newYorkAirportData);
+                _airportRepositoryMock.Setup(x => x.GetAirportCodesForCity(city)).ReturnsAsync(newYorkAirportData);
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -351,7 +351,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 _hotelRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(hotels);
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
@@ -423,7 +423,7 @@ namespace otb.search.holidays.tests.Unit.Services
                 _hotelRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(hotels);
 
                 // Act
-                var result = await _classUnderTest.Search(from, to, date, days);
+                var result = await _classUnderTest.SearchHolidays(from, to, date, days);
                 var resultList = result.ToList();
 
                 // Assert
